@@ -1,11 +1,12 @@
-import { CREATE_GAME } from '../actions/types'
+import { NEW_GAME } from '../actions/types'
+import { randomWord } from '../lib/game'
 
 
 
-export default (state = '', { type, payload } = {}) => {
+export default (state = randomWord(), { type, payload } = {}) => {
   switch (type) {
-  case CREATE_GAME :
-    return payload.wordReducer
+  case NEW_GAME :
+    return payload.mysteryWord
   default :
     return state
   }

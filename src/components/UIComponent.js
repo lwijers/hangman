@@ -1,29 +1,42 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
+import { makeGuess } from '../actions/gameActions'
 
 
-export class UIComponent extends PureComponent {
-  // static propTypes = {
-  // : PropTypes.string.isRequired
-  // }
+class UIComponent extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+
+    this.props.makeGuess(this.state.value)
+    event.preventDefault();
+  }
 
 
   render() {
-    // const {word} = this.props
     return (
-      <form>
-        <div>
-          <label>Choose a single letter</label>
-          <input type="text" name="letter"
-            placeholder="lower case, one letter"/>
-        </div>
-        <div>
-          <button>Submit</button>
-        </div>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          maxLength="1"
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+          placeholder="Pick any letter"
+        />
+        <input type="submit" value="Make a Guess" />
       </form>
     )
   }
 }
 
-export default connect()(UIComponent)
+export default connect(null, { makeGuess })(UIComponent)

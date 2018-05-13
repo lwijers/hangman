@@ -1,21 +1,32 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-// import randomWord from '../lib/game'
-// import './Board.css'
+import {showGuess} from '../lib/game'
 
-export class WordComponent extends PureComponent {
+
+class WordComponent extends PureComponent {
+
+
   static propTypes = {
-    word: PropTypes.string.isRequired
+    mysteryWord: PropTypes.string.isRequired,
+    triedLetters: PropTypes.array.isRequired
   }
 
-
   render() {
-    const {word} = this.props
+    const {mysteryWord, triedLetters} = this.props
     return (
-      <p className="Word">guess the word: {word}</p>
+      <p className="Word">guess the word: {showGuess(mysteryWord, triedLetters)}</p>
     )
   }
 }
 
-export default connect()(WordComponent)
+
+const mapStateToProps = (reduxState) => {
+  return {
+    mysteryWord: reduxState.mysteryWord,
+    triedLetters: reduxState.triedLetters
+
+  }
+}
+
+export default connect(mapStateToProps)(WordComponent)

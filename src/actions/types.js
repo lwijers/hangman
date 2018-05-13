@@ -1,1 +1,2 @@
-export const CREATE_GAME = 'CREATE_GAME'
+export const NEW_GAME = 'NEW_GAME'
+export const MAKE_GUESS = 'MAKE_GUESS'

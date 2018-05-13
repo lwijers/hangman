@@ -1,17 +1,19 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import {wrongGuessCount} from '../lib/game'
 
 class GuessCountComponent extends PureComponent {
   static propTypes = {
-    count: PropTypes.number.isRequired
+    guesses: PropTypes.guesses,
+    word: PropTypes.guesses
   }
 
 
   render() {
-    const {count} = this.props
+    const {guesses, word} = this.props
     return (
-      <p>Guess Count: {count}/6</p>
+      <p>guesses left: {6 - wrongGuessCount(word, guesses)}/6</p>
     )
   }
 }
@@ -19,7 +21,8 @@ class GuessCountComponent extends PureComponent {
 
 const mapStateToProps = (reduxState) => {
   return {
-    count: reduxState.guessCount
+    guesses: reduxState.triedLetters,
+    word: reduxState.mysteryWord
   }
 }
 

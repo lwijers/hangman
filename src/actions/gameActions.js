@@ -1,18 +1,24 @@
-import { CREATE_GAME } from './types'
-import {randomWord} from '../lib/game'
+// import { NEW_GAME } from './types'
+// import {randomWord} from '../lib/game'
 
 
-export const createGame = () => {
-  const wordReducer = randomWord()
-  const guessCount = 0;
+export const newGame = (mysteryWord) => {
+  return {
+    type: 'NEW_GAME',
+    payload: {
+      mysteryWord,
+    }
+  }
+}
+
+
+export const makeGuess = (guess) => {
+  // const triedLetter = guess
 
   return {
-    type: 'CREATE_GAME',
+    type: 'MAKE_GUESS',
     payload: {
-      wordReducer,
-      guessCount
-    } 
-
+      guess,
+    }
   }
-
 }
