@@ -13,7 +13,7 @@ export class WordComponent extends PureComponent {
   render() {
     const {word} = this.props
     return (
-      <p className="Word">{word}</p>
+      <p className="Word">guess the word: {word}</p>
     )
   }
 }

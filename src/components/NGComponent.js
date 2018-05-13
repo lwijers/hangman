@@ -1,20 +1,29 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
+import { createGame } from '../actions/gameActions'
+import PropTypes from 'prop-types'
 
 
 export class NGComponent extends PureComponent {
-  // static propTypes = {
-  //   word: PropTypes.string.isRequired
-  // }
+  static propTypes = {
+    createGame: PropTypes.func.isRequired
+  }
+
+  handleClick = () => {
+    this.props.createGame()
+  }
 
 
   render() {
-    // const {word} = this.props
     return (
-      <button className="NGButt">New Game</button>
+      <button
+        onClick={this.handleClick}
+        className="NGButt"
+      >
+        New Game
+      </button>
     )
   }
 }
 
-export default connect()(NGComponent)
+export default connect(null, { createGame })(NGComponent)

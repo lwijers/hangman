@@ -1,3 +1,12 @@
+import { CREATE_GAME } from '../actions/types'
+
+
+
 export default (state = '', { type, payload } = {}) => {
-  return state
+  switch (type) {
+  case CREATE_GAME :
+    return payload.wordReducer
+  default :
+    return state
+  }
 }
