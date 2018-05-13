@@ -6,7 +6,7 @@ import UIComponent from './components/UIComponent'
 import GuessCountComponent from './components/GuessCountComponent'
 import TriedLettersComp from './components/TriedLettersComp'
 import PropTypes from 'prop-types'
-import {wrongGuessCount, wrongGuessLimit, isWinner} from './lib/game'
+import {wrongGuessLimit, isWinner} from './lib/game'
 import { connect } from 'react-redux'
 
 class App extends Component {
